@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="import" href="elements.html">
+	</head>
+	<dom-module is="todo-app">
+		<style></style>
+		<template>
+			<paper-drawer-panel>
+				<paper-header-panel class="side-panel" drawer>
+					<paper-toolbar>
+						<div><span>Tarefas Completadas</span></div>
+					</paper-toolbar>
+					<paper-menu id="completed" class="list">
+						<template is="dom-if" if={{!done.length}}>
+							
+						</template>
+						<template id="done" is="dom-repeat" items={{done}}>
+						</template>
+					</paper-menu>
+				</paper-header-panel>
+				<paper-header-panel main class="main-panel">
+					<paper-toolbar>
+						<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+						<div><span>Tarefas Ativas</span></div>
+					</paper-toolbar>
+					<div style="padding-left: 5px">
+						<!--Let's create a new task-->
+						<paper-material id="newTask" elevation="1">
+							<paper-input id="myTask" label="Tarefa">
+							</paper-input>
+							<paper-input id="myUser" label="Usuário">
+							</paper-input>
+							<paper-fab icon="icons:add" on-tap="postTask">
+							</paper-fab>
+						</paper-material>
+						<div id="todos">
+							<template is="dom-if" if={{todo.length}}>
+								<paper-material class="taskEmpty">
+									<paper-item>Sem tarefas!</paper-item>
+								</paper-material>
+							</template>
+						</div>
+					</div>
+				</paper-header-panel>
+			</paper-drawer-panel>
+		</template>
+		<script>
+		Polymer({
+			is: "todo-app",
+			properties: {
+				todo: {
+					type: Array,
+					value: [{user: "Bruno", task: "Make a Polymer app!"},
+						{user: "Bruno", task: "Make a AngularJS app!"}]
+					},
+					done:{
+						type: Array,
+						value: []
+					},
+					messages:{
+						type: Array,
+						value: []
+					}
+			},
+			postTask: function(e){
+				var task = this.$.myTask.value;
+				var user = this.$.myUser.value;
+				if (task == ""){
+					alert("Campo de tarefa vazio!");
+					return;
+				}
+				this.$.pub.message = {type:"todo", task:task, user:user};
+				this.$.pub.publish();
+				this.$.myTask.value = "";
+			},
+		})
+		</script>
+	</dom-module>
+</html>

@@ -1,0 +1,16 @@
+<dom module id="todo-list">
+
+	<template is="dom-repeat" items="[[todos]]">
+		<todo-item todo="[[item.todo]]" is-complete="[[item.isComplete]]">
+		</todo-item>
+	</template>
+
+	<script>
+		Polymer({
+			is: 'todo-list',
+			properties: {
+				todos: Array
+			}
+		});
+	</script>
+</dom-module>

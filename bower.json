@@ -1,0 +1,19 @@
+{
+  "name": "PolymerFromZeroToHero",
+  "version": "0.0.0",
+  "homepage": "https://github.com/clarasantana/PolymerFromZeroToHero",
+  "authors": [
+    "Maria Clara <claarasantana@icloud.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#1.0.0"
+  }
+}

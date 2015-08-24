@@ -1,0 +1,24 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
+
+<dom-module id="todo-item">
+	
+	<template>
+		<paper-checkbox checked="[[isComplete]]"></paper-checkbox>
+		<span>[[todo]]</span>
+	</template>
+	
+	<script>
+		Polymer({
+			is: 'todo-item',
+			properties: {
+				todo: String,
+				isComplete: {type: Boolean, default: false},
+				_notifyCheckedToggled: function(){
+					this.fire('todo-item-checked-toggle');
+				}
+			}
+		});
+	</script>
+
+<dom-module>

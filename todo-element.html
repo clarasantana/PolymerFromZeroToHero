@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<link rel="import" href="bower_components/polymer/polymer.html">
+	</head>
+	<dom-module is="todo-element">
+		<style>
+			/*CSS rules*/
+		</style>
+		<template>
+			
+		</template>
+		<script>
+			Polymer({
+				is: "todo-element",
+				properties: {
+					user: {
+						type: String,
+						value: ""
+					},
+					task: {
+						type: String,
+						value: "Hello!"
+					},
+					time: {
+						type: String,
+						value: new Date().toLocaleString()
+					},
+					completed: {
+						type: Boolean,
+						value: false,
+						observer: 'compChanged'
+					},
+					editing: {
+						type: Boolean,
+						value: false
+					}
+				},
+				compChanged: function(e){
+					if(e){this.fire('complete', this);}
+				},
+				doEditing: function(e){this.editing!=this.editing;
+				},
+			});	
+		</script>
+	</dom-module>
+</html>
